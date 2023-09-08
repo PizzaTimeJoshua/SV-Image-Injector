@@ -1,4 +1,25 @@
+# Announcement
 
+Turns out the script for injecting images may only work for *some* players.
+The specifics of who it may work for depend on what value certain block data value are.
+
+
+    *UInt32 KPictureProfileCurrentWidth
+Must have a value of 960
+
+
+    *UInt32 KPictureProfileCurrentHeight
+Must have a value of 544
+
+
+    *UInt32 KPictureIconCurrentWidth
+Must have a value of 224
+
+
+    *UInt32 KPictureIconCurrentHeight
+Must have a value of 224
+
+All these values can be changed with PKHeX's Savedata Block dump editor to be compatible with the code, I will adjust the code and programming accordingly to account for differing values
 # SV-Image-Injector
 Edit and Extract Player Profile and Icon Pictures.
 Using PKHeX's Block Data Import and Export tool, it is possible to extract and edit a Player's Profile and Icon images.
