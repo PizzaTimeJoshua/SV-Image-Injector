@@ -1,25 +1,4 @@
-# Announcement
 
-Turns out the script for injecting images may only work for *some* players.
-The specifics of who it may work for depend on what value certain block data value are.
-
-
-    *UInt32 KPictureProfileCurrentWidth
-Must have a value of 960
-
-
-    *UInt32 KPictureProfileCurrentHeight
-Must have a value of 544
-
-
-    *UInt32 KPictureIconCurrentWidth
-Must have a value of 224
-
-
-    *UInt32 KPictureIconCurrentHeight
-Must have a value of 224
-
-All these values can be changed with PKHeX's Savedata Block dump editor to be compatible with the code, I will adjust the code and programming accordingly to account for differing values
 # SV-Image-Injector
 Edit and Extract Player Profile and Icon Pictures.
 Using PKHeX's Block Data Import and Export tool, it is possible to extract and edit a Player's Profile and Icon images.
@@ -38,11 +17,45 @@ As stated earlier, this project makes use of PKHeX. If you don't have access to 
 # Usage
 
 ## Injecting a Custom Image to a Save File
-The process for a custom Profile image and a custom Icon image are similar. Both will be covered here since the process is nearly identical.
+The process for a custom Profile image and a custom Icon image are similar. Both will be covered here since the process is nearly identical. Be sure to have you both your Profile and Icon image already changed before trying
 
-The size requirements for each image is strict and needs to be followed.
-For **Profile Images**, it requires a **width of 960 pixels** and **height of 544 pixels**.
-For **Icon Images**, it requires a **width of 224 pixels** and **height of 224 pixels**.
+### Image Requirements
+The Size Requirements  *may* vary between users. For reasons I can't figure out, the size may be one of the following:
+
+For **Profile Images**, its a **width of 1440 pixels** and **height of 832 pixels**. (This value is the default)
+For **Icon Images**, its a **width of 352 pixels** and **height of 352 pixels**. (This value is the default)
+
+**OR**
+
+For **Profile Images**, its a **width of 960 pixels** and **height of 544 pixels**.
+For **Icon Images**, its a **width of 224 pixels** and **height of 224 pixels**.
+
+The width and height have to match the image you want to inject. You *can* change the value to the first groupings of sizes to maximize the quality of the image you want to inject. The sizes in the first set of grouping is close to the limit of the file size of what an image can be uploaded so it is *not* recommended that you increase the size beyond the *width of 1440* and *height of 832*.
+
+Before *must* first verify what the image width and height by checking your save file on PKHeX.
+
+Open PKHeX and import you *Save File*. Afterward, Select the *SAV* tab and select *Block Data*.
+
+![](https://i.imgur.com/7hjQuQR.png)
+
+Then you need to locate the Block Data that contains the width and height of the type of image you want to inject into your save file.
+
+For Profile Image these are the Block Key you need to look for. They show the *width* and *height* respectively:
+
+    *UInt32 KPictureProfileCurrentWidth
+    *UInt32 KPictureProfileCurrentHeight
+
+For Icon Image these are the Block Key you need to look for. They show the *width* and *height* respectively:
+
+    *UInt32 KPictureIconCurrentWidth
+    *UInt32 KPictureIconCurrentHeight
+
+
+Below is what you should see. In this case, this is for the Profile Width. The value seen on the side is listed as 1440. If you see a lower value, keep note of it OR change the value right now.
+
+![](https://i.imgur.com/2JIEYCM.png)
+
+Now that you have your width and height, you need to have an image that matches those two values. With that image ready, we can continue.
 
 For this example, I will inject the following image to my Save File as a *Profile Image*:
 
@@ -50,9 +63,14 @@ For this example, I will inject the following image to my Save File as a *Profil
 
 Now that I have my image ready, I need to open the executable or run the Python file directly. The program should looking something like this:
 
-![](https://i.imgur.com/UjUbOXX.png)
+![](https://i.imgur.com/q96PXWM.png)
 
-Now click on *Select File* and select your image file. Afterwards, the *Console Messages* should confirm you selected an Image file and automatically select the correct option for you. If you have opted to change your *Icon Image*, then also be sure to select *Icon Picture* instead of the *Profile Picture* option.
+If you have elected *not* to change your width/height value *AND* the value on your save file are different from what the default is, you need to indicate what values you have to the program. This can be done by selecting the *File* and subsequently *Configure*. A window separate window should show up.
+
+![](https://i.imgur.com/FECDCPM.png)
+Input the appropriate values and then *Save* after ensuring the values are the correct. This should close the window.
+
+Back to the main window, click on *Select File* and select your image file. Afterwards, the *Console Messages* should confirm you selected an Image file and automatically select the correct option for you. If you have opted to change your *Icon Image*, then also be sure to select *Icon Picture* instead of the *Profile Picture* option.
 
 ![](https://i.imgur.com/kR93ASt.png)
 
@@ -60,7 +78,7 @@ Now click on *Convert and Save* to save a binary file. A message should say `Ima
 
 Open PKHeX and import you *Save File*. Afterward, Select the *SAV* tab and select *Block Data*.
 
-![](https://i.imgur.com/Zfzn6vS.png)
+![](https://i.imgur.com/7hjQuQR.png)
 
 Then you need to locate the Block Data that contains the Image you want to Inject.
 For the Player's Profile Picture, its called:
@@ -73,7 +91,7 @@ And for the Player's Icon Picture, its called:
     
    You can type it out or scroll through the Block Key to find it.
 
-![](https://i.imgur.com/eFpI6uX.png)
+![](https://i.imgur.com/MpnF5VE.png)
 
 After you found your corresponding Block Key, click on *Import Current Block* and select the binary file you have just obtained to import.
 
@@ -125,3 +143,4 @@ And for the Player's Icon Picture, its called:
 ![](https://i.imgur.com/eFpI6uX.png)
 
 Export the Current Block and save as a binary file. Using the SV-Image-Injector, you can follow the steps to inject a custom image, except you will instead have `BIN to Image` selected before you convert and save.
+
