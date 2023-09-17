@@ -68,6 +68,7 @@ Now that I have my image ready, I need to open the executable or run the Python 
 If you have elected *not* to change your width/height value *AND* the value on your save file are different from what the default is, you need to indicate what values you have to the program. This can be done by selecting the *File* and subsequently *Configure*. A window separate window should show up.
 
 ![](https://i.imgur.com/FECDCPM.png)
+
 Input the appropriate values and then *Save* after ensuring the values are the correct. This should close the window.
 
 Back to the main window, click on *Select File* and select your image file. Afterwards, the *Console Messages* should confirm you selected an Image file and automatically select the correct option for you. If you have opted to change your *Icon Image*, then also be sure to select *Icon Picture* instead of the *Profile Picture* option.
